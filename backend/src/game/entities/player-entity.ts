@@ -15,7 +15,7 @@ export class Player {
   @Column()
   name!: string; // ✅ required (you asked for this)
 
-  @Column({ unique: false })
+  @Column({ unique: false, type: 'varchar', length: 100 })
   username!: string;
 
   @Column({ default: 0 })
@@ -40,7 +40,7 @@ export class Player {
   sessionId!: string;
 
   // Optional: track socket connection
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   socketId!: string | null;
 
   @CreateDateColumn()

@@ -5,6 +5,8 @@ import {
   OneToMany,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 import { SessionStatus } from '../enums/session-enum';
 import { Player } from './player-entity';
@@ -21,6 +23,11 @@ export class Session {
   })
   status!: SessionStatus;
 
+  // ✅ GAME MASTER AS RELATION
+  @ManyToOne(() => Player, { nullable: true })
+  @JoinColumn({ name: 'game_master_id' })
+  gameMaster!: Player | null;
+
   @Column({ name: 'game_master_id', nullable: true })
   gameMasterId!: string | null;
 
@@ -30,13 +37,13 @@ export class Session {
   })
   players!: Player[];
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   question!: string | null;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   answer!: string | null;
 
-  @Column({ name: 'winner_id', nullable: true })
+  @Column({ name: 'winner_id',type: 'varchar', nullable: true })
   winnerId!: string | null;
 
   @Column({ type: 'int', default: 60 })
