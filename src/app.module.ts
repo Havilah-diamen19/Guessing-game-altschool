@@ -22,6 +22,9 @@ import { GameModule } from './game/game.module';
         database: configService.get<string>('DB_NAME'),
         autoLoadEntities: true,
         synchronize: true,
+        ssl: {
+          rejectUnauthorized: false,
+        },
       }),
     }),
 
