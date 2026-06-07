@@ -8,7 +8,6 @@ import {
 
 import { Server, Socket } from 'socket.io';
 import { GameService } from './game.service';
-import { GameMapper } from './game.mapper';
 
 @WebSocketGateway({ cors: { origin: '*' } })
 export class GameGateway {

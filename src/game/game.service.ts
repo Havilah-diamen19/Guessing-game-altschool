@@ -27,6 +27,24 @@ export class GameService {
     this.server = server;
   }
 
+  // GET SESSION
+async getSession(sessionId: string) {
+  return this.sessionRepo.findOne({ where: { id: sessionId } });
+}
+
+// GET PLAYERS
+async getPlayers(sessionId: string) {
+  return this.playerRepo.findBy({ sessionId });
+}
+
+// LEADERBOARD
+async getLeaderboard(sessionId: string) {
+  return this.playerRepo.find({
+    where: { sessionId },
+    order: { score: 'DESC' },
+  });
+}
+
   // =========================
   // CREATE SESSION
   // =========================
